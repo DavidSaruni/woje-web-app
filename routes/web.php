@@ -57,4 +57,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
         'update' => 'posters.update',
         'destroy' => 'posters.destroy'
     ]);
+
+});
+
+Route::get('/link-storage', function () {
+    Artisan::call('storage:link');
+    return 'Storage link created successfully!';
 });
