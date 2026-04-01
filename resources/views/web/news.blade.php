@@ -241,7 +241,7 @@
 {{-- ─── Page Header ─── --}}
 <div class="mt-8 bg-[#28a745] border-b-4 border-[#28a745] px-6 py-7">
   <div class="max-w-7xl mx-auto">
-    <h1 class="text-[1.6rem] font-bold text-white tracking-tight m-0">Blogs</h1>
+    <h1 class="text-[1.6rem] font-bold text-white tracking-tight m-0">Blog</h1>
     <div class="flex items-center gap-1.5 mt-1.5 text-xs text-white/50">
       <a href="{{ url('/') }}" class="text-white/60 hover:text-white transition-colors no-underline">Home</a>
       <span class="text-white/30">›</span>

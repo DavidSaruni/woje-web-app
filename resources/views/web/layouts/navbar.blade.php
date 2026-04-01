@@ -38,7 +38,7 @@
           <a href="{{ request()->routeIs('/') ? '#programs' : url('/#programs') }}" class="nav-link hover:text-primary transition-colors">Programs</a>
           <a href="{{ request()->routeIs('/') ? '#team' : url('/#team') }}" class="nav-link hover:text-primary transition-colors">Our Team</a>
           <a href="{{ request()->routeIs('/') ? '#impact' : url('/#impact') }}" class="nav-link hover:text-primary transition-colors">Impact</a>
-          <a href="{{ request()->routeIs('/') ? '#news-notices' : url('/#news-notices') }}" class="nav-link hover:text-primary transition-colors">Blogs</a>
+          <a href="{{ request()->routeIs('/') ? '#news-notices' : url('/#news-notices') }}" class="nav-link hover:text-primary transition-colors">Blog</a>
           <a href="{{ request()->routeIs('/') ? '#contact' : url('/#contact') }}" class="nav-link hover:text-primary transition-colors">Careers</a>
           <a href="{{ request()->routeIs('/') ? '#contact' : url('/#contact') }}" class="nav-link hover:text-primary transition-colors">Contact</a>
         </div>
