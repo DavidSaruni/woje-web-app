@@ -1,0 +1,46 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('news_articles', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->text('excerpt')->nullable();
+            $table->longText('content');
+            $table->string('main_image')->nullable();
+            $table->foreignId('category_id')->constrained('news_categories')->onDelete('cascade');
+            $table->enum('status', ['draft', 'published'])->default('draft');
+            $table->boolean('featured')->default(false);
+            $table->timestamp('published_at')->nullable();
+            $table->string('author')->nullable();
+            $table->json('tags')->nullable();
+            $table->integer('read_time')->default(5); // in minutes
+            $table->integer('views')->default(0);
+            $table->timestamps();
+
+            $table->index('slug');
+            $table->index('status');
+            $table->index('featured');
+            $table->index('published_at');
+            $table->index('category_id');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('news_articles');
+    }
+};
