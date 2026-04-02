@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Poster;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class PosterController extends Controller
 {
@@ -72,7 +71,7 @@ class PosterController extends Controller
         if ($request->hasFile('image_path')) {
             // Delete old image
             if ($poster->image_path && file_exists(public_path($poster->image_path))) {
-                Storage::disk('public')->delete($poster->image_path);
+                unlink(public_path($poster->image_path));
             }
 
             $image = $request->file('image_path');
@@ -95,8 +94,8 @@ class PosterController extends Controller
     public function destroy(Poster $poster)
     {
         // Delete image file
-        if ($poster->image_path) {
-            Storage::disk('public')->delete($poster->image_path);
+        if ($poster->image_path && file_exists(public_path($poster->image_path))) {
+            unlink(public_path($poster->image_path));
         }
 
         $poster->delete();

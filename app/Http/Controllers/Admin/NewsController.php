@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class NewsController extends Controller
@@ -77,7 +76,10 @@ class NewsController extends Controller
 
         // Handle image upload
         if ($request->hasFile('main_image')) {
-            $imagePath = $request->file('main_image')->store('news', 'public');
+            $image = $request->file('main_image');
+            $imageName = 'news_' . time() . '.' . $image->getClientOriginalExtension();
+            $imagePath = 'images/news/' . $imageName;
+            $image->move(public_path('images/news'), $imageName);
             $validated['main_image'] = $imagePath;
         }
 
@@ -153,11 +155,14 @@ class NewsController extends Controller
         // Handle image upload
         if ($request->hasFile('main_image')) {
             // Delete old image if exists
-            if ($article->main_image) {
-                Storage::disk('public')->delete($article->main_image);
+            if ($article->main_image && file_exists(public_path($article->main_image))) {
+                unlink(public_path($article->main_image));
             }
             
-            $imagePath = $request->file('main_image')->store('news', 'public');
+            $image = $request->file('main_image');
+            $imageName = 'news_' . time() . '.' . $image->getClientOriginalExtension();
+            $imagePath = 'images/news/' . $imageName;
+            $image->move(public_path('images/news'), $imageName);
             $validated['main_image'] = $imagePath;
         }
 
@@ -183,8 +188,8 @@ class NewsController extends Controller
         $article = \App\Models\NewsArticle::findOrFail($id);
         
         // Delete image if exists
-        if ($article->main_image) {
-            Storage::disk('public')->delete($article->main_image);
+        if ($article->main_image && file_exists(public_path($article->main_image))) {
+            unlink(public_path($article->main_image));
         }
         
         $article->delete();
