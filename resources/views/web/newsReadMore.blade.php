@@ -131,7 +131,7 @@
         {{-- Featured Image (full image, natural aspect — no crop) --}}
         <div class="relative w-full bg-[#eef2f7]">
           @if($article->main_image)
-            <img src="{{ asset('storage/' . $article->main_image) }}" 
+            <img src="{{ asset($article->main_image) }}" 
                  alt="{{ $article->title }}" 
                  class="block w-full h-auto max-w-full" />
           @else
@@ -238,7 +238,7 @@
               <div class="flex gap-3">
                 @if($related->main_image)
                   <span class="w-20 h-20 shrink-0 rounded overflow-hidden bg-[#eef2f7] flex items-center justify-center p-0.5">
-                    <img src="{{ asset('storage/' . $related->main_image) }}" alt="{{ $related->title }}" class="max-w-full max-h-full w-auto h-auto object-contain" />
+                    <img src="{{ asset($related->main_image) }}" alt="{{ $related->title }}" class="max-w-full max-h-full w-auto h-auto object-contain" />
                   </span>
                 @else
                   <span class="w-20 h-20 shrink-0 rounded overflow-hidden bg-[#eef2f7] flex items-center justify-center p-0.5">

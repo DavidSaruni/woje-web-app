@@ -111,7 +111,7 @@
                     @if(isset($article->main_image) && $article->main_image)
                         <div class="current-image">
                             <p style="font-size:0.7rem; color:#64748b; margin-bottom:0.25rem;">Current main image:</p>
-                            <img src="{{ asset('storage/' . $article->main_image) }}" alt="{{ $article->title }}" 
+                            <img src="{{ asset($article->main_image) }}" alt="{{ $article->title }}" 
                                  style="height:3rem; width:auto; border-radius:4px;">
                         </div>
                     @endif
