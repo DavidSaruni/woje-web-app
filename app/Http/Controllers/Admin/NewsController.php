@@ -76,10 +76,14 @@ class NewsController extends Controller
 
         // Handle image upload
         if ($request->hasFile('main_image')) {
+            $dir = public_path('images/news');
+            if (! is_dir($dir)) {
+                mkdir($dir, 0755, true);
+            }
             $image = $request->file('main_image');
             $imageName = 'news_' . time() . '.' . $image->getClientOriginalExtension();
             $imagePath = 'images/news/' . $imageName;
-            $image->move(public_path('images/news'), $imageName);
+            $image->move($dir, $imageName);
             $validated['main_image'] = $imagePath;
         }
 
@@ -154,15 +158,16 @@ class NewsController extends Controller
 
         // Handle image upload
         if ($request->hasFile('main_image')) {
-            // Delete old image if exists
-            if ($article->main_image && file_exists(public_path($article->main_image))) {
-                unlink(public_path($article->main_image));
+            $this->deleteStoredNewsImage($article->main_image);
+
+            $dir = public_path('images/news');
+            if (! is_dir($dir)) {
+                mkdir($dir, 0755, true);
             }
-            
             $image = $request->file('main_image');
             $imageName = 'news_' . time() . '.' . $image->getClientOriginalExtension();
             $imagePath = 'images/news/' . $imageName;
-            $image->move(public_path('images/news'), $imageName);
+            $image->move($dir, $imageName);
             $validated['main_image'] = $imagePath;
         }
 
@@ -187,15 +192,43 @@ class NewsController extends Controller
     {
         $article = \App\Models\NewsArticle::findOrFail($id);
         
-        // Delete image if exists
-        if ($article->main_image && file_exists(public_path($article->main_image))) {
-            unlink(public_path($article->main_image));
-        }
-        
+        $this->deleteStoredNewsImage($article->main_image);
+
         $article->delete();
 
         return redirect()
             ->route('admin.news.index')
             ->with('success', 'News article deleted successfully!');
+    }
+
+    /**
+     * Remove main image file from disk (public/images/news or storage/app/public).
+     */
+    private function deleteStoredNewsImage(?string $path): void
+    {
+        if ($path === null || trim($path) === '') {
+            return;
+        }
+
+        $path = ltrim(trim($path), '/');
+
+        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
+            return;
+        }
+
+        if (str_starts_with($path, 'images/')) {
+            $full = public_path($path);
+            if (is_file($full)) {
+                @unlink($full);
+            }
+
+            return;
+        }
+
+        $relative = str_starts_with($path, 'storage/') ? substr($path, strlen('storage/')) : $path;
+        $full = storage_path('app/public/' . $relative);
+        if (is_file($full)) {
+            @unlink($full);
+        }
     }
 }

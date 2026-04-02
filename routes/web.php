@@ -60,7 +60,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
 
 });
 
-Route::get('/link-storage', function () {
-    Artisan::call('storage:link');
-    return 'Storage link created successfully!';
-});
+Route::get('/symlink', function () {
+    $target =$_SERVER['DOCUMENT_ROOT'].'/storage/app/public';
+    $link = $_SERVER['DOCUMENT_ROOT'].'/public/storage';
+    symlink($target, $link);
+    echo "Done";
+ });

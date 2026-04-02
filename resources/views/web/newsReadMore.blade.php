@@ -131,7 +131,7 @@
         {{-- Featured Image (full image, natural aspect — no crop) --}}
         <div class="relative w-full bg-[#eef2f7]">
           @if($article->main_image)
-            <img src="{{ asset($article->main_image) }}" 
+            <img src="{{ $article->main_image_url }}" 
                  alt="{{ $article->title }}" 
                  class="block w-full h-auto max-w-full" />
           @else
@@ -200,7 +200,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               @foreach($article->additional_images as $image)
                 <div class="overflow-hidden rounded-lg bg-[#f5f7fa] flex items-center justify-center p-2 min-h-[12rem]">
-                  <img src="{{ asset('storage/' . $image) }}" alt="{{ $article->title }}" class="max-h-[28rem] w-full object-contain hover:opacity-95 transition-opacity duration-300" />
+                  <img src="{{ \App\Models\NewsArticle::publicUrlForStoredPath($image) }}" alt="{{ $article->title }}" class="max-h-[28rem] w-full object-contain hover:opacity-95 transition-opacity duration-300" />
                 </div>
               @endforeach
             </div>
@@ -238,7 +238,7 @@
               <div class="flex gap-3">
                 @if($related->main_image)
                   <span class="w-20 h-20 shrink-0 rounded overflow-hidden bg-[#eef2f7] flex items-center justify-center p-0.5">
-                    <img src="{{ asset($related->main_image) }}" alt="{{ $related->title }}" class="max-w-full max-h-full w-auto h-auto object-contain" />
+                    <img src="{{ $related->main_image_url }}" alt="{{ $related->title }}" class="max-w-full max-h-full w-auto h-auto object-contain" />
                   </span>
                 @else
                   <span class="w-20 h-20 shrink-0 rounded overflow-hidden bg-[#eef2f7] flex items-center justify-center p-0.5">

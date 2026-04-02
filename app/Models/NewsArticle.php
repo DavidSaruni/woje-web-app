@@ -158,4 +158,43 @@ class NewsArticle extends Model
         $this->increment('views');
         return $this->views;
     }
+
+    /**
+     * Public URL for a stored path. Supports:
+     * - disk "public" paths (e.g. news/hash.jpg → /storage/news/hash.jpg)
+     * - direct public/ paths (e.g. images/news/news_123.jpg → /images/news/...)
+     * - absolute http(s) URLs
+     */
+    public static function publicUrlForStoredPath(?string $path): ?string
+    {
+        if ($path === null || trim($path) === '') {
+            return null;
+        }
+
+        $path = trim($path);
+
+        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
+            return $path;
+        }
+
+        $path = ltrim($path, '/');
+
+        if (str_starts_with($path, 'images/')) {
+            return asset($path);
+        }
+
+        if (str_starts_with($path, 'storage/')) {
+            return asset($path);
+        }
+
+        return asset('storage/' . $path);
+    }
+
+    /**
+     * Full URL for the article main image (see publicUrlForStoredPath).
+     */
+    public function getMainImageUrlAttribute(): ?string
+    {
+        return self::publicUrlForStoredPath($this->main_image);
+    }
 }

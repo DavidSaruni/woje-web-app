@@ -111,7 +111,7 @@
                     @if(isset($article->main_image) && $article->main_image)
                         <div class="current-image">
                             <p style="font-size:0.7rem; color:#64748b; margin-bottom:0.25rem;">Current main image:</p>
-                            <img src="{{ asset($article->main_image) }}" alt="{{ $article->title }}" 
+                            <img src="{{ $article->main_image_url }}" alt="{{ $article->title }}" 
                                  style="height:3rem; width:auto; border-radius:4px;">
                         </div>
                     @endif
@@ -128,7 +128,7 @@
                             @if(isset($article->{'image_' . $n}) && $article->{'image_' . $n})
                                 <div class="current-image">
                                     <p style="font-size:0.7rem; color:#64748b; margin-bottom:0.25rem;">Current:</p>
-                                    <img src="{{ asset('storage/' . $article->{'image_' . $n}) }}" alt="{{ $article->title }}" 
+                                    <img src="{{ \App\Models\NewsArticle::publicUrlForStoredPath($article->{'image_' . $n}) }}" alt="{{ $article->title }}" 
                                          style="height:2.5rem; width:auto; border-radius:4px;">
                                 </div>
                             @endif
