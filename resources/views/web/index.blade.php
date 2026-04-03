@@ -113,14 +113,14 @@
                 <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 mb-8">
                     <div class="grid md:grid-cols-2 gap-0">
                         <!-- Image Section -->
-                        <div class="relative h-80 md:h-auto overflow-hidden">
+                        <div class="relative w-full h-80 md:min-h-[22rem] overflow-hidden">
                             @if($latest->main_image)
-                                <img src="{{ asset('storage/'.$latest->main_image) }}" 
+                                <img src="{{ asset($latest->image_path) }}" 
                                      alt="{{ $latest->title }}" 
-                                     class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
+                                     class="absolute inset-0 w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
                                      onerror="this.style.background='#f3f4f6'">
                             @else
-                                <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                                <div class="absolute inset-0 w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
                                     <svg class="w-24 h-24 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                                     </svg>
@@ -167,11 +167,11 @@
           @endphp
           @forelse($latestThree as $news)
         <div class="md:col-span-1 bg-white rounded-2xl overflow-hidden shadow-sm card-hover border border-gray-100">
-          <div class="relative">
+          <div class="relative w-full aspect-[3/4] overflow-hidden">
             @if($news->main_image)
-                <img src="{{ asset('storage/'.$news->main_image) }}" alt="{{ $news->title }}" class="w-full h-56 object-cover" onerror="this.style.background='#f3e8ff'" />
+                <img src="{{ asset($news->image_path) }}" alt="{{ $news->title }}" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.background='#f3e8ff'" />
             @else
-                <div class="w-full h-56 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                <div class="absolute inset-0 w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
                     <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                     </svg>

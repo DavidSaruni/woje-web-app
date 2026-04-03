@@ -160,41 +160,50 @@ class NewsArticle extends Model
     }
 
     /**
-     * Public URL for a stored path. Supports:
-     * - disk "public" paths (e.g. news/hash.jpg → /storage/news/hash.jpg)
-     * - direct public/ paths (e.g. images/news/news_123.jpg → /images/news/...)
-     * - absolute http(s) URLs
+     * Web-relative path for use with asset(), matching Poster::$image_path.
+     * Built from main_image: new uploads use images/news/... under public/;
+     * legacy rows may use news/... (served via /storage/...).
      */
-    public static function publicUrlForStoredPath(?string $path): ?string
+    public function getImagePathAttribute(): ?string
     {
-        if ($path === null || trim($path) === '') {
-            return null;
-        }
-
-        $path = trim($path);
-
-        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
-            return $path;
-        }
-
-        $path = ltrim($path, '/');
-
-        if (str_starts_with($path, 'images/')) {
-            return asset($path);
-        }
-
-        if (str_starts_with($path, 'storage/')) {
-            return asset($path);
-        }
-
-        return asset('storage/' . $path);
+        return self::storedPathForAsset($this->main_image);
     }
 
     /**
-     * Full URL for the article main image (see publicUrlForStoredPath).
+     * Same as image_path for any stored path string (e.g. additional gallery paths).
      */
-    public function getMainImageUrlAttribute(): ?string
+    public static function storedPathForAsset(?string $stored): ?string
     {
-        return self::publicUrlForStoredPath($this->main_image);
+        if ($stored === null || trim($stored) === '') {
+            return null;
+        }
+
+        $stored = trim($stored);
+
+        if (str_starts_with($stored, 'http://') || str_starts_with($stored, 'https://')) {
+            return $stored;
+        }
+
+        $stored = ltrim($stored, '/');
+
+        if (str_starts_with($stored, 'images/')) {
+            return $stored;
+        }
+
+        if (str_starts_with($stored, 'storage/')) {
+            return $stored;
+        }
+
+        return 'storage/' . $stored;
+    }
+
+    /**
+     * Full URL (same pattern as Poster::getImageUrlAttribute).
+     */
+    public function getImageUrlAttribute(): ?string
+    {
+        $path = $this->image_path;
+
+        return $path ? asset($path) : null;
     }
 }

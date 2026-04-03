@@ -74,17 +74,16 @@ class NewsController extends Controller
             }
         }
 
-        // Handle image upload
+        // Handle image upload (same pattern as PosterController: public/images/{type}/time.ext)
         if ($request->hasFile('main_image')) {
             $dir = public_path('images/news');
             if (! is_dir($dir)) {
                 mkdir($dir, 0755, true);
             }
             $image = $request->file('main_image');
-            $imageName = 'news_' . time() . '.' . $image->getClientOriginalExtension();
-            $imagePath = 'images/news/' . $imageName;
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move($dir, $imageName);
-            $validated['main_image'] = $imagePath;
+            $validated['main_image'] = 'images/news/' . $imageName;
         }
 
         // Parse tags
@@ -165,10 +164,9 @@ class NewsController extends Controller
                 mkdir($dir, 0755, true);
             }
             $image = $request->file('main_image');
-            $imageName = 'news_' . time() . '.' . $image->getClientOriginalExtension();
-            $imagePath = 'images/news/' . $imageName;
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move($dir, $imageName);
-            $validated['main_image'] = $imagePath;
+            $validated['main_image'] = 'images/news/' . $imageName;
         }
 
         // Parse tags

@@ -333,11 +333,11 @@
       <div class="flex flex-col gap-5">
         @forelse($news as $article)
           <div class="grid grid-cols-1 sm:grid-cols-[220px_1fr] gap-0 bg-white rounded overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,0.07)] transition-all duration-300 border-l-3 border-l-transparent hover:shadow-[0_8px_28px_rgba(245,48,3,0.13)] hover:-translate-y-0.5 hover:border-l-[#f53003] animate-fade-up">
-            <div class="overflow-hidden">
+            <div class="relative w-full h-64 md:h-40 overflow-hidden shrink-0">
               @if($article->main_image)
-                <img src="{{ $article->main_image_url }}" alt="{{ $article->title }}" class="w-full h-64 md:h-40 object-cover block transition-transform duration-400 hover:scale-105" />
+                <img src="{{ asset($article->image_path) }}" alt="{{ $article->title }}" class="absolute inset-0 w-full h-full object-cover block transition-transform duration-400 hover:scale-105" />
               @else
-                <img src="https://images.pexels.com/photos/3938022/pexels-photo-3938022.jpeg?auto=compress&cs=tinysrgb&w=440" alt="News" class="w-full h-64 md:h-40 object-cover block transition-transform duration-400 hover:scale-105" />
+                <img src="https://images.pexels.com/photos/3938022/pexels-photo-3938022.jpeg?auto=compress&cs=tinysrgb&w=440" alt="News" class="absolute inset-0 w-full h-full object-cover transition-transform duration-400 hover:scale-105" />
               @endif
             </div>
             <div class="p-5 flex flex-col justify-between">

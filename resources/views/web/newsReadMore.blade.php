@@ -128,18 +128,18 @@
       {{-- Article Card --}}
       <div class="bg-white rounded-lg shadow-lg overflow-hidden">
         
-        {{-- Featured Image (full image, natural aspect — no crop) --}}
-        <div class="relative w-full bg-[#eef2f7]">
+        {{-- Featured Image (same pattern as notice-board poster: relative box + cover) --}}
+        <div class="relative w-full bg-[#eef2f7] aspect-[16/10] md:aspect-[21/9] overflow-hidden">
           @if($article->main_image)
-            <img src="{{ $article->main_image_url }}" 
+            <img src="{{ asset($article->image_path) }}" 
                  alt="{{ $article->title }}" 
-                 class="block w-full h-auto max-w-full" />
+                 class="absolute inset-0 w-full h-full object-cover" />
           @else
             <img src="https://images.pexels.com/photos/3938022/pexels-photo-3938022.jpeg?auto=compress&cs=tinysrgb&w=1200" 
                  alt="News" 
-                 class="block w-full h-auto max-w-full" />
+                 class="absolute inset-0 w-full h-full object-cover" />
           @endif
-          <div class="absolute top-4 left-4">
+          <div class="absolute top-4 left-4 z-10">
             @if($article->category)
               <span class="inline-block text-xs font-semibold tracking-wider uppercase text-white bg-[#f53003] px-4 py-2 rounded-full shadow-md">
                 {{ $article->category->name }}
@@ -199,8 +199,8 @@
             <h3 class="text-xl font-semibold mb-6 text-[#28a745]">Additional Images</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               @foreach($article->additional_images as $image)
-                <div class="overflow-hidden rounded-lg bg-[#f5f7fa] flex items-center justify-center p-2 min-h-[12rem]">
-                  <img src="{{ \App\Models\NewsArticle::publicUrlForStoredPath($image) }}" alt="{{ $article->title }}" class="max-h-[28rem] w-full object-contain hover:opacity-95 transition-opacity duration-300" />
+                <div class="relative w-full aspect-[4/3] overflow-hidden rounded-lg bg-[#f5f7fa] shadow-sm">
+                  <img src="{{ asset(\App\Models\NewsArticle::storedPathForAsset($image)) }}" alt="{{ $article->title }}" class="absolute inset-0 w-full h-full object-cover hover:opacity-95 transition-opacity duration-300" />
                 </div>
               @endforeach
             </div>
@@ -237,12 +237,12 @@
             <a href="{{ route('news.newsReadMore', $related->slug) }}" class="block p-4 hover:bg-[#f0f4f8] transition-colors no-underline group">
               <div class="flex gap-3">
                 @if($related->main_image)
-                  <span class="w-20 h-20 shrink-0 rounded overflow-hidden bg-[#eef2f7] flex items-center justify-center p-0.5">
-                    <img src="{{ $related->main_image_url }}" alt="{{ $related->title }}" class="max-w-full max-h-full w-auto h-auto object-contain" />
+                  <span class="relative w-20 h-20 shrink-0 rounded overflow-hidden bg-[#eef2f7]">
+                    <img src="{{ asset($related->image_path) }}" alt="{{ $related->title }}" class="absolute inset-0 w-full h-full object-cover" />
                   </span>
                 @else
-                  <span class="w-20 h-20 shrink-0 rounded overflow-hidden bg-[#eef2f7] flex items-center justify-center p-0.5">
-                    <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=120" alt="Related" class="max-w-full max-h-full w-auto h-auto object-contain" />
+                  <span class="relative w-20 h-20 shrink-0 rounded overflow-hidden bg-[#eef2f7]">
+                    <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=120" alt="Related" class="absolute inset-0 w-full h-full object-cover" />
                   </span>
                 @endif
                 <div class="flex-1 min-w-0">
