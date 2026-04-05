@@ -116,6 +116,67 @@
     transform: translateY(-1px);
   }
 
+  /* Photo + orange caption: strict column stack — caption never overlaps image (mobile + desktop) */
+  .team-card .member-identity-col {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    isolation: isolate;
+  }
+  .team-card .member-photo-wrap {
+    flex: 0 0 auto;
+    width: 100%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  @media (max-width: 639px) {
+    .team-card .member-photo-wrap {
+      min-height: 280px;
+      height: min(88vw, 380px);
+    }
+  }
+  @media (min-width: 640px) {
+    .team-card .member-photo-wrap {
+      height: 240px;
+    }
+  }
+  .team-card .member-photo-wrap .member-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+    display: block;
+  }
+  .team-card .member-caption {
+    flex: 0 0 auto;
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 639px) {
+    .member-bio {
+      border-left: none;
+      border-top: 4px solid #e86a10;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .member-profile-btn {
+      position: static;
+      margin-top: 14px;
+      align-self: flex-start;
+    }
+    .member-bio--with-profile {
+      padding-bottom: 20px;
+    }
+  }
+
   /* Fallback avatar */
   .avatar-fallback {
     width: 100%;
@@ -170,12 +231,12 @@
         <div class="team-card bg-white rounded overflow-hidden flex flex-col sm:flex-row">
 
           {{-- Photo + Caption --}}
-          <div class="flex flex-col sm:w-56 w-full flex-shrink-0">
-            <div class="w-full" style="height:200px; overflow:hidden; background:#2a4a80;">
+          <div class="member-identity-col flex flex-col w-full sm:w-56 flex-shrink-0">
+            <div class="member-photo-wrap">
               <img
                 src="{{ asset($image) }}"
                 alt="{{ $name }}"
-                style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;"
+                class="member-photo-img"
                 onerror="this.parentElement.innerHTML='<div class=\'avatar-fallback\'><svg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\' fill=\'#7eb8d4\' viewBox=\'0 0 16 16\'><path d=\'M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4z\'/></svg></div>'"
               />
             </div>
@@ -211,12 +272,12 @@
         <div class="team-card bg-white rounded overflow-hidden flex flex-col sm:flex-row">
 
           {{-- Photo + Caption --}}
-          <div class="flex flex-col sm:w-56 w-full flex-shrink-0">
-            <div class="w-full" style="height:200px; overflow:hidden; background:#2a4a80;">
+          <div class="member-identity-col flex flex-col w-full sm:w-56 flex-shrink-0">
+            <div class="member-photo-wrap">
               <img
                 src="{{ asset($image) }}"
                 alt="{{ $name }}"
-                style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;"
+                class="member-photo-img"
                 onerror="this.parentElement.innerHTML='<div class=\'avatar-fallback\'><svg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\' fill=\'#7eb8d4\' viewBox=\'0 0 16 16\'><path d=\'M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4z\'/></svg></div>'"
               />
             </div>
@@ -299,12 +360,12 @@
         <div class="team-card bg-white rounded overflow-hidden flex flex-col sm:flex-row">
 
           {{-- Photo + Caption --}}
-          <div class="flex flex-col sm:w-56 w-full flex-shrink-0">
-            <div class="w-full" style="height:200px; overflow:hidden; background:#2a4a80;">
+          <div class="member-identity-col flex flex-col w-full sm:w-56 flex-shrink-0">
+            <div class="member-photo-wrap">
               <img
                 src="{{ asset($image) }}"
                 alt="{{ $name }}"
-                style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;"
+                class="member-photo-img"
                 onerror="this.parentElement.innerHTML='<div class=\'avatar-fallback\'><svg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\' fill=\'#7eb8d4\' viewBox=\'0 0 16 16\'><path d=\'M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4z\'/></svg></div>'"
               />
             </div>
