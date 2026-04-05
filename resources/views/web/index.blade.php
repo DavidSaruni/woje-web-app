@@ -623,7 +623,7 @@
   <!-- TESTIMONIAL -->
   <section class="py-20 relative overflow-hidden">
     <div class="absolute inset-0">
-      <img src="{{ asset('community-gathering.jpeg') }}" alt="bg" class="w-full h-full object-cover" onerror="this.style.background='#7B2D8B'" />
+      <img src="{{ asset('community-gathering.jpeg') }}" alt="bg" class="w-full h-full object-cover" onerror="this.style.background='#1e3a6e'" />
       <div class="absolute inset-0 bg-primary/90"></div>
     </div>
     <div class="relative max-w-6xl mx-auto px-6 lg:px-8 text-center text-white">
