@@ -84,6 +84,7 @@
     .testimonial-dots button.active { background: #f53003; }
     img { object-fit: cover; }
   </style>
+  @stack('styles')
 </head>
 <body class="font-sans text-gray-800 bg-white">
 

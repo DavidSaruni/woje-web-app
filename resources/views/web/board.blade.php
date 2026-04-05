@@ -87,6 +87,35 @@
     margin: 0;
   }
 
+  .member-bio--with-profile {
+    padding-bottom: 52px;
+  }
+
+  .member-profile-btn {
+    position: absolute;
+    bottom: 16px;
+    right: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 14px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+    background-color: #e86a10;
+    border-radius: 6px;
+    border: 1px solid #d45f0c;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  .member-profile-btn:hover {
+    background-color: #cf5f0e;
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
   /* Fallback avatar */
   .avatar-fallback {
     width: 100%;
@@ -105,7 +134,7 @@
     <div class="flex items-center gap-1.5 mt-1.5 text-xs text-white/50">
       <a href="{{ url('/') }}" class="text-white/60 hover:text-[#b3e8f5] transition-colors no-underline">Home</a>
       <span class="text-white/30">›</span>
-      <span class="text-[#b3e8f5]">Board of Directors & Management</span>
+      <span class="text-[#b3e8f5]">Leadership</span>
     </div>
   </div>
 </div>
@@ -122,19 +151,15 @@
       </p>
     </div>
 
-    {{-- ── BOARD OF DIRECTORS ── --}}
+    {{-- ── BOARD ADVISORS ── --}}
     <div>
       <div class="bg-[#28a745] rounded-t px-6 py-4 border-b-4 border-[#e86a10]">
-        <h2 class="text-white font-bold text-[0.95rem] tracking-wider uppercase m-0">Board of Directors</h2>
+        <h2 class="text-white font-bold text-[0.95rem] tracking-wider uppercase m-0">Board Advisors</h2>
       </div>
       <div class="grid grid-cols-1 gap-5 pt-6">
         @foreach([
-          ['Chairperson',                    'Ms. Joyce Ayoub Phillip Gaza',  'Chairperson, Board of Directors',        'Joyce Ayoub Phillip Gaza brings exceptional leadership and strategic vision to her role as Chairperson of WOJE\'s Board of Directors. With her extensive experience in governance and deep commitment to women\'s rights, she guides the organization\'s strategic direction and ensures accountability in all operations. As Chairperson, Joyce oversees the board\'s governance responsibilities, ensuring that WOJE maintains the highest standards of transparency, effectiveness, and impact in its mission to advance gender justice across South Sudan. Her leadership is instrumental in shaping the organization\'s policies and strategic initiatives.',                                                                                         'joyce-gaza-chairperson.jpeg'],
-          ['Vice Chairperson',               'Ms. Catherine Visensio Lolika', 'Vice Chairperson, Board of Directors',   'Supports the board\'s strategic oversight and organisational accountability. Committed to advancing inclusive policies that promote gender equality and protect the rights of women and girls in South Sudan.',                                                                                  'catherine-visensio-lolika.jpg'],
-          ['Board Treasurer',                'Ms. Mariam Hamida',             'Board Treasurer',                        'Provides financial oversight and ensures WOJE\'s resources are managed with integrity and transparency. Brings expertise in financial governance and organisational sustainability.',                                                                                                          'mariam-hamida.jpeg'],
-          ['Board Secretary',                'Ms. Zabib Musa Loro',          'Board Secretary',   'Zabib Musa Loro serves as the Executive Director of Women for Justice and Equality (WOJE), bringing over a decade of transformative leadership in gender programming, policy advocacy, and human rights defense. Her unwavering commitment to advancing women\'s rights has earned her international recognition, including the prestigious 2025 US International Women of Courage Award from the US State Department and the 2023 Outstanding Woman Human Rights Defender Award.',                                                                                                          'zabibloro.jpeg'],
-          ['Board Member',                      'Ms. Jennifer John Malachi',            'Board Member',                        'Jennifer John Malachi is a passionate and purpose-driven South Sudanese student, currently pursuing a Bachelor of Science in Data Science and Analytics at the United States International University-Africa (USIU-Africa). As a Mastercard Foundation Scholar and an active member of Cohort 6, Jennifer is deeply committed to using her education, skills, and voice to uplift communities and advocate for the rights and empowerment of women and girls in South Sudan.',                                                                                                          'jennifer.jpeg'],
-        ] as [$role, $name, $credentials, $bio, $image])
+          ['Board Advisor',                    'Ms. Joyce Ayoub Phillip Gaza',  'Board Advisor',        'Joyce Ayoub Phillip Gaza brings exceptional leadership and strategic vision to her role as WOJE\'s Board Advisor. With her extensive experience in governance and deep commitment to women\'s rights, she guides the organization\'s strategic direction and ensures accountability in all operations. As Board Advisor, she contributes to the board\'s governance responsibilities, helping ensure that WOJE maintains the highest standards of transparency, effectiveness, and impact in its mission to advance gender justice across South Sudan. Her leadership is instrumental in shaping the organization\'s policies and strategic initiatives.',                                                                                         'joyce-gaza-chairperson.jpeg', route('team.joyce-phillip-gaza')],
+          ] as [$role, $name, $credentials, $bio, $image, $profileUrl])
         <div class="team-card bg-white rounded overflow-hidden flex flex-col sm:flex-row">
 
           {{-- Photo + Caption --}}
@@ -154,9 +179,58 @@
           </div>
 
           {{-- Bio --}}
-          <div class="member-bio flex-1">
+          <div class="member-bio flex-1 relative{{ $profileUrl ? ' member-bio--with-profile' : '' }}">
             <p class="member-role-badge">{{ $role }}</p>
             <p class="member-bio-text">{{ $bio }}</p>
+            @if($profileUrl)
+            <a href="{{ $profileUrl }}" class="member-profile-btn">View profile</a>
+            @endif
+          </div>
+
+        </div>
+        @endforeach
+      </div>
+    </div>
+
+    {{-- ── BOARD OF DIRECTORS ── --}}
+    <div>
+      <div class="bg-[#28a745] rounded-t px-6 py-4 border-b-4 border-[#e86a10]">
+        <h2 class="text-white font-bold text-[0.95rem] tracking-wider uppercase m-0">Board of Directors</h2>
+      </div>
+      <div class="grid grid-cols-1 gap-5 pt-6">
+        @foreach([
+          ['Chairperson',                    'Dr. Lamya Ibrahim Badri',  'Chairperson, Board of Directors',        'Dr. Lamya Ibrahim Badri is a governance, gender, and development specialist with over 20 years of experience working across Sudan and other conflict-affected contexts. She holds a Ph.D. in Women\'s Legal Rights within Customary Laws and has collaborated with leading international organizations, including UN Women, UNDP, UNFPA, and Musawah Global Movement. As Chairperson of Women for Justice and Equality (WOJE), Dr. Badri provides strategic leadership, governance oversight, and institutional direction. She brings strong expertise in policy guidance, accountability, and results-based programming. Her work integrates governance, community empowerment, and rights-based approaches, with a focus on strengthening institutional systems and advancing organizational effectiveness. Dr. Badri has extensive experience in program design, monitoring, and donor-funded project implementation, particularly in areas of peacebuilding, governance, and community resilience with a focus on Muslim women empowerment. She is committed to advancing equitable and accountable systems that support women\'s leadership and sustainable development in fragile and post-conflict settings.',                                                                                         'lamya-badir.jpeg', route('team.lamya-ibrahim-badri')],
+          ['Vice Chairperson',               'Ms. Catherine Visensio Lolika', 'Vice Chairperson, Board of Directors',   'Supports the board\'s strategic oversight and organisational accountability. Committed to advancing inclusive policies that promote gender equality and protect the rights of women and girls in South Sudan.',                                                                                  'catherine-visensio-lolika.jpg', null],
+          ['Board Treasurer',                'Ms. Maura Ajak',             'Board Treasurer',                        'Maura Ajak is an award-winning freelance journalist and multimedia professional (since 2014) for outlets including Al Jazeera English and BBC Africa Eye, with deep experience in human rights, peace, governance, and climate justice. As Board Treasurer of WOJE, she strengthens financial transparency, ethical stewardship, and accountable reporting in support of gender justice and community trust across South Sudan. She holds a Diploma in Communication and Public Relations from the University of Juba.',                                                                                                          'maura-ajak.png', route('team.maura-ajak')],
+          ['Board Secretary',                'Ms. Zabib Musa Loro',          'Board Secretary',   'Zabib Musa Loro serves as the Executive Director of Women for Justice and Equality (WOJE), bringing over a decade of transformative leadership in gender programming, policy advocacy, and human rights defense. Her unwavering commitment to advancing women\'s rights has earned her international recognition, including the prestigious 2025 US International Women of Courage Award from the US State Department and the 2023 Outstanding Woman Human Rights Defender Award.',                                                                                                          'zabibloro.jpeg', route('team.zabib-loro')],
+          ['Board Member',                   'Ms. Mariam Hamida',             'Board Member',                        'Ms. Mariam Hamida serves as a Board Member of WOJE, continuing to support financial governance and organisational sustainability following her service as Board Treasurer. She helps ensure WOJE\'s resources are managed with integrity and transparency and advances accountability alongside fellow directors.',                                                                                                          'mariam-hamida.jpeg', null],
+          ['Board Member',                      'Ms. Jennifer John Malachi',            'Board Member',                        'Jennifer John Malachi is a South Sudanese student pursuing a B.Sc. in Data Science and Analytics at USIU-Africa and a Mastercard Foundation Scholar (Cohort 6). She advocates for women and girls and supports WOJE through community engagement, including M&E and digital storytelling on a 2025 Community Action Project in Kabu South and Luriki.',                                                                                                          'jennifer.jpeg', route('team.jennifer-john-malachi')],
+        ] as [$role, $name, $credentials, $bio, $image, $profileUrl])
+        <div class="team-card bg-white rounded overflow-hidden flex flex-col sm:flex-row">
+
+          {{-- Photo + Caption --}}
+          <div class="flex flex-col sm:w-56 w-full flex-shrink-0">
+            <div class="w-full" style="height:200px; overflow:hidden; background:#2a4a80;">
+              <img
+                src="{{ asset($image) }}"
+                alt="{{ $name }}"
+                style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;"
+                onerror="this.parentElement.innerHTML='<div class=\'avatar-fallback\'><svg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\' fill=\'#7eb8d4\' viewBox=\'0 0 16 16\'><path d=\'M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4z\'/></svg></div>'"
+              />
+            </div>
+            <div class="member-caption">
+              <p class="member-name">{{ $name }}</p>
+              <p class="member-title">{{ $credentials }}</p>
+            </div>
+          </div>
+
+          {{-- Bio --}}
+          <div class="member-bio flex-1 relative{{ $profileUrl ? ' member-bio--with-profile' : '' }}">
+            <p class="member-role-badge">{{ $role }}</p>
+            <p class="member-bio-text">{{ $bio }}</p>
+            @if($profileUrl)
+            <a href="{{ $profileUrl }}" class="member-profile-btn">View profile</a>
+            @endif
           </div>
 
         </div>
@@ -176,44 +250,50 @@
             'Ms. Zabib Musa Loro',
             'Executive Director',             
             'Zabib Musa Loro serves as the Executive Director of Women for Justice and Equality (WOJE), bringing over a decade of transformative leadership in gender programming, policy advocacy, and human rights defense. Her unwavering commitment to advancing women\'s rights has earned her international recognition, including the prestigious 2025 US International Women of Courage Award from the US State Department and the 2023 Outstanding Woman Human Rights Defender Award.',                                                                                                                                                  
-            'zabibloro.jpeg'
+            'zabibloro.jpeg',
+            route('team.zabib-loro'),
           ],
           [
             'Program Manager',
             'Ms. Yika Marina Mogga',    
             'Program Manager',                
-            'With over four years of professional experience, Yika Marina Mogga is dedicated to advancing gender equality, promoting social justice, and empowering women through transformative programs. Currently serving as Program Manager at Women for Justice and Equality (WOJE), she provides strategic leadership in the design, implementation, and evaluation of initiatives that create meaningful, lasting impact across South Sudan\'s communities.',                                                                                                                     
-            'yika-marina-mogga.jpeg'
+            'With over four years of professional experience, Yika Marina Mogga advances gender equality and social justice as Program Manager at WOJE, leading design, implementation, and evaluation across South Sudan. Her portfolio spans peacebuilding, GBV, health, and education. She holds a Bachelor\'s in Business Administration and a Diploma in Leadership and Development Studies.',                                                                                                                     
+            'yika-marina-mogga.jpeg',
+            route('team.yika-marina-mogga'),
           ],
           [
             'Finance & Operations',
             'Ms. Hamida Khamisa',       
             'Finance & Operations Manager',   
-            'Hamida Khamisa is a seasoned finance professional with a unique multidisciplinary background. She holds a bachelor\'s degree in Psychology, complemented by diplomas in finance, logistics, project management, and evaluation. With over five years of dedicated service in the humanitarian sector, Hamida has developed a robust skill set in case management, data collection, and financial oversight tailored to complex operational environments. Her expertise spans financial planning, budgeting, and logistical coordination within humanitarian projects, ensuring optimal resource allocation and compliance with donor requirements. Hamida\'s grounding in psychology enhances her approach to team leadership and stakeholder engagement, fostering collaborative environments that drive efficiency and program success.',                                                                                                      
-            'hamida-khamisa.jpg'
+            'Hamida Khamisa is a seasoned finance professional with a unique multidisciplinary background. She holds a bachelor\'s degree in Psychology, complemented by diplomas in finance, logistics, project management, and evaluation. With over five years in the humanitarian sector, she combines financial planning, budgeting, and logistics with stakeholder engagement. As Finance & Operations Manager, she bridges program implementation and financial accountability and strengthens systems for effective service delivery.',                                                                                                      
+            'hamida-khamisa.jpg',
+            route('team.hamida-khamisa'),
           ],
           [
             'M&E Officer',
             'Mr. Sebit Abdulkarim',     
             'Monitoring & Evaluation Officer',
-            'Sebit Abdulkarim is a graduate of Makerere University Business School (Kampala), holding a bachelor\'s degree in Business Administration. He earned a certificate in Leadership Skills from Salemi School of Leadership (Nigeria) and a diploma in Advanced ICT from Nakawa Vocational Institute, Kampala, Uganda.Sebit\'s diverse skill set includes Monitoring and Evaluation, Communication, Graphic Design, Website and Social Media Management, and Content Creation. His professional journey includes three years as an Assistant Administrator at Sanyu FM Kampala, where his exceptional performance earned him the Administration Star of the Year award in 2021. During this time, he also gained valuable experience in audio advertising and program directing.',                                                                                                       
-            'sebit-abdulkarim.jpg'
+            'Sebit Abdulkarim is a graduate of Makerere University Business School (Kampala), holding a bachelor\'s degree in Business Administration. He earned a certificate in Leadership Skills from Salemi School of Leadership (Nigeria) and a diploma in Advanced ICT from Nakawa Vocational Institute, Kampala, Uganda. His diverse skill set includes Monitoring and Evaluation, Communication, Graphic Design, Website and Social Media Management, and Content Creation. He served Sanyu FM Kampala (Administration Star of the Year, 2021), then NASOSS as Communications and Advocacy Officer. Since April 2023 he has been with Women for Justice and Equality South Sudan as Team Leader of Communications and Advocacy with M&E support.',                                                                                                       
+            'sebit-abdulkarim.jpg',
+            route('team.sebit-abdulkarim'),
           ],
           [
             'GBV Officer – Raja',
             'Ms. Allen Samanya Zabibu',
             'GBV Officer',
             'Allen Samanya Zabibu is a dedicated South Sudanese professional born on July 26, 1992, who has devoted over 13 years of her career to protecting and empowering vulnerable populations, particularly women and children affected by gender-based violence. Currently residing in Juba and serving as a GBV Officer in Raja, Allen brings a unique combination of academic excellence and practical field experience to her vital work in community protection and social justice.',
-            'allen-samanya-zabibu.jpeg'
+            'allen-samanya-zabibu.jpeg',
+            route('team.allen-samanya-zabibu'),
           ],
           [
             'GBV Officer',         
             'Ms. Anna Joggo Ruman',     
             'GBV Officer',                    
             'Supports survivors of gender-based violence through counseling, legal assistance, and community outreach. Works closely with local authorities to ensure protection and justice for vulnerable women and girls.',                                                                       
-            'anna-joggo-ruman.jpg'
+            'anna-joggo-ruman.jpg',
+            null,
           ],
-        ] as [$role, $name, $credentials, $bio, $image])
+        ] as [$role, $name, $credentials, $bio, $image, $profileUrl])
         <div class="team-card bg-white rounded overflow-hidden flex flex-col sm:flex-row">
 
           {{-- Photo + Caption --}}
@@ -233,9 +313,12 @@
           </div>
 
           {{-- Bio --}}
-          <div class="member-bio flex-1">
+          <div class="member-bio flex-1 relative{{ $profileUrl ? ' member-bio--with-profile' : '' }}">
             <p class="member-role-badge">{{ $role }}</p>
             <p class="member-bio-text">{{ $bio }}</p>
+            @if($profileUrl)
+            <a href="{{ $profileUrl }}" class="member-profile-btn">View profile</a>
+            @endif
           </div>
 
         </div>

@@ -459,12 +459,12 @@
 
       <!-- Board of Directors -->
       <h3 class="text-2xl font-bold text-gray-800 mb-8 text-center">Board of Directors</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-14 max-w-7xl mx-auto">
         <div class="text-center card-hover bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:border-woje-green/30 transition-all">
-          <img src="{{ asset('joyce-gaza-chairperson.jpeg') }}" alt="Joyce Ayoub" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-woje-green/20" onerror="this.style.background='#fef2f2'" />
-          <h4 class="font-semibold text-gray-700 text-md mb-1">Ms. Joyce Ayoub Phillip Gaza</h4>
+          <img src="{{ asset('lamya-badir.jpeg') }}" alt="Dr. Lamya Ibrahim Badri" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-woje-green/20" onerror="this.style.background='#fef2f2'" />
+          <h4 class="font-semibold text-gray-700 text-md mb-1">Dr. Lamya Ibrahim Badri </h4>
           <p class="text-woje-red text-xs font-medium mb-3">Chairperson Board of Directors</p>
-          <a href="#" class="inline-block text-woje-red text-xs font-semibold hover:text-red-700 transition-colors">View Profile →</a>
+          <a href="{{ route('team.lamya-ibrahim-badri') }}" class="inline-block text-woje-red text-xs font-semibold hover:text-red-700 transition-colors">View Profile →</a>
         </div>
         <div class="text-center card-hover bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:border-woje-green/30 transition-all">
           <img src="{{ asset('catherine-visensio-lolika.jpg') }}" alt="Catherine Lolika" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-woje-green/20" onerror="this.style.background='#fef2f2'" />
@@ -473,16 +473,22 @@
           <span class="inline-block text-gray-400 text-xs">Coming Soon</span>
         </div>
         <div class="text-center card-hover bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:border-woje-green/30 transition-all">
-          <img src="{{ asset('mariam-hamida.jpeg') }}" alt="Mariam Hamida" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-woje-green/20" onerror="this.style.background='#fef2f2'" />
-          <h4 class="font-semibold text-gray-700 text-md mb-1">Ms. Mariam Hamida</h4>
+          <img src="{{ asset('maura-ajak.png') }}" alt="Maura Ajak" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-woje-green/20" onerror="this.style.background='#fef2f2'" />
+          <h4 class="font-semibold text-gray-700 text-md mb-1">Ms. Maura Ajak</h4>
           <p class="text-woje-red text-xs font-medium mb-3">Board Treasurer</p>
-          <span class="inline-block text-gray-400 text-xs">Coming Soon</span>
+          <a href="{{ route('team.maura-ajak') }}" class="inline-block text-woje-red text-xs font-semibold hover:text-red-700 transition-colors">View Profile →</a>
         </div>
         <div class="text-center card-hover bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:border-woje-green/30 transition-all">
           <img src="{{ asset('zabibloro.jpeg') }}" alt="Zabib Loro" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-woje-green/20" onerror="this.style.background='#fef2f2'" />
           <h4 class="font-semibold text-gray-700 text-md mb-1">Ms. Zabib Musa Loro</h4>
           <p class="text-woje-red text-xs font-medium mb-3">Board Secretary</p>
-          <a href="#" class="inline-block text-woje-red text-xs font-semibold hover:text-red-700 transition-colors">View Profile →</a>
+          <a href="{{ route('team.zabib-loro') }}" class="inline-block text-woje-red text-xs font-semibold hover:text-red-700 transition-colors">View Profile →</a>
+        </div>
+        <div class="text-center card-hover bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:border-woje-green/30 transition-all">
+          <img src="{{ asset('mariam-hamida.jpeg') }}" alt="Mariam Hamida" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-woje-green/20" onerror="this.style.background='#fef2f2'" />
+          <h4 class="font-semibold text-gray-700 text-md mb-1">Ms. Mariam Hamida</h4>
+          <p class="text-woje-red text-xs font-medium mb-3">Board Member</p>
+          <a href="{{ route('board') }}" class="inline-block text-woje-red text-xs font-semibold hover:text-red-700 transition-colors">Leadership page →</a>
         </div>
       </div>
 
@@ -521,14 +527,6 @@
                     </div>
                     <p class="text-md text-gray-500 uppercase tracking-widest">All Management Team Members Loaded</p>
                 </div>
-
-                <!-- View All Link -->
-                <a href="{{ route('board') }}" class="mt-8 flex items-center gap-2 text-md text-gray-400 hover:text-woje-green transition-colors duration-300 uppercase tracking-widest">
-                    <span>View Management Team</span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                    </svg>
-                </a>
 
             </div>
         </div>

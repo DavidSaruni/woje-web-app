@@ -135,4 +135,40 @@ class WebController extends Controller
     public function board(){
         return view('web.board');
     }
+
+    public function zabibLoro(){
+        return view('web.zabib-loro');
+    }
+
+    public function joycePhillipGaza(){
+        return view('web.joyce-phillip-gaza');
+    }
+
+    public function lamyaIbrahimBadri(){
+        return view('web.lamya-ibrahim-badri');
+    }
+
+    public function allenSamanyaZabibu(){
+        return view('web.allen-samanya-zabibu');
+    }
+
+    public function sebitAbdulkarim(){
+        return view('web.sebit-abdulkarim');
+    }
+
+    public function hamidaKhamisa(){
+        return view('web.hamida-khamisa');
+    }
+
+    public function yikaMarinaMogga(){
+        return view('web.yika-marina-mogga');
+    }
+
+    public function jenniferJohnMalachi(){
+        return view('web.jennifer-john-malachi');
+    }
+
+    public function mauraAjak(){
+        return view('web.maura-ajak');
+    }
 }
