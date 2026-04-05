@@ -199,7 +199,7 @@
       </div>
     </div>
 
-    {{-- ── BOARD ADVISORS ── --}}
+    <!-- {{-- ── BOARD ADVISORS ── --}}
     <div>
       <div class="bg-[#28a745] rounded-t px-6 py-4 border-b-4 border-[#e86a10]">
         <h2 class="text-white font-bold text-[0.95rem] tracking-wider uppercase m-0">Board Advisors</h2>
@@ -238,7 +238,7 @@
         </div>
         @endforeach
       </div>
-    </div>
+    </div> -->
 
     {{-- ── MANAGEMENT TEAM ── --}}
     <div>
