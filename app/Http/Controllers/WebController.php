@@ -136,6 +136,10 @@ class WebController extends Controller
         return view('web.board');
     }
 
+    public function about(){
+        return view('web.about');
+    }
+
     public function zabibLoro(){
         return view('web.zabib-loro');
     }

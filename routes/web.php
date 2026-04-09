@@ -13,6 +13,7 @@ Route::get('/news', [WebController::class, 'news'])->name('news');
 Route::get('/news/{slug}/',[WebController::class,'newsReadMore'])->name('news.newsReadMore');
 Route::post('/contact', [WebController::class, 'submitContact'])->name('contact.submit');
 Route::get('/board', [WebController::class, 'board'])->name('board');
+Route::get('/about', [WebController::class, 'about'])->name('about');
 Route::get('/team/zabib-musa-loro', [WebController::class, 'zabibLoro'])->name('team.zabib-loro');
 Route::get('/team/joyce-phillip-gaza', [WebController::class, 'joycePhillipGaza'])->name('team.joyce-phillip-gaza');
 Route::get('/team/lamya-ibrahim-badri', [WebController::class, 'lamyaIbrahimBadri'])->name('team.lamya-ibrahim-badri');

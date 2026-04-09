@@ -34,7 +34,7 @@
         <!-- Desktop Nav -->
         <div class="hidden lg:flex items-center gap-7 text-base font-medium text-gray-700">
           <a href="{{ route('web.index') }}" class="nav-link hover:text-primary transition-colors">Home</a>
-          <a href="{{ request()->routeIs('/') ? '#about' : url('/#about') }}" class="nav-link hover:text-primary transition-colors">About Us</a>
+          <a href="{{ route('about') }}" class="nav-link hover:text-primary transition-colors">About Us</a>
           <a href="{{ request()->routeIs('/') ? '#programs' : url('/#programs') }}" class="nav-link hover:text-primary transition-colors">Programs</a>
           <a href="{{ request()->routeIs('/') ? '#team' : url('/#team') }}" class="nav-link hover:text-primary transition-colors">Our Team</a>
           <a href="{{ request()->routeIs('/') ? '#impact' : url('/#impact') }}" class="nav-link hover:text-primary transition-colors">Impact</a>
@@ -61,7 +61,7 @@
       <div id="mobile-menu" class="mobile-menu lg:hidden border-t border-gray-100 pb-4">
         <div class="flex flex-col gap-4 pt-4 text-base font-medium text-gray-700">
           <a href="{{ route('web.index') }}" class="hover:text-primary px-2">Home</a>
-          <a href="{{ request()->routeIs('/') ? '#about' : url('/#about') }}" class="hover:text-primary px-2">About Us</a>
+          <a href="{{ route('about') }}" class="hover:text-primary px-2">About Us</a>
           <a href="{{ request()->routeIs('/') ? '#programs' : url('/#programs') }}" class="hover:text-primary px-2">Programs</a>
           <a href="{{ request()->routeIs('/') ? '#team' : url('/#team') }}" class="hover:text-primary px-2">Our Team</a>
           <a href="{{ request()->routeIs('/') ? '#impact' : url('/#impact') }}" class="hover:text-primary px-2">Impact</a>
