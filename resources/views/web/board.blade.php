@@ -333,14 +333,6 @@
             route('team.hamida-khamisa'),
           ],
           [
-            'M&E Officer',
-            'Mr. Sebit Abdulkarim',     
-            'Monitoring & Evaluation Officer',
-            'Sebit Abdulkarim is a graduate of Makerere University Business School (Kampala), holding a bachelor\'s degree in Business Administration. He earned a certificate in Leadership Skills from Salemi School of Leadership (Nigeria) and a diploma in Advanced ICT from Nakawa Vocational Institute, Kampala, Uganda. His diverse skill set includes Monitoring and Evaluation, Communication, Graphic Design, Website and Social Media Management, and Content Creation. He served Sanyu FM Kampala (Administration Star of the Year, 2021), then NASOSS as Communications and Advocacy Officer. Since April 2023 he has been with Women for Justice and Equality South Sudan as Team Leader of Communications and Advocacy with M&E support.',                                                                                                       
-            'sebit-abdulkarim.jpg',
-            route('team.sebit-abdulkarim'),
-          ],
-          [
             'GBV Officer – Raja',
             'Ms. Allen Samanya Zabibu',
             'GBV Officer',
