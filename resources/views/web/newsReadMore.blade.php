@@ -1,6 +1,6 @@
 @extends('web.app')
 
-@section('title', '{{ $article->title }}')
+@section('title', $article->title)
 
 @section('content')
 
@@ -107,13 +107,13 @@
 {{-- ─── Page Header ─── --}}
 <div class=" bg-[#28a745] border-b-4 border-[#00a0c6] px-6 py-7">
   <div class="max-w-7xl mx-auto">
-    <h1 class="text-[1.6rem] font-bold text-white tracking-tight m-0">News &amp; Updates</h1>
+    <h1 class="text-[1.6rem] font-bold text-white tracking-tight m-0">{{ $article->title }}</h1>
     <div class="flex items-center gap-1.5 mt-1.5 text-xs text-white/50">
       <a href="{{ url('/') }}" class="text-white/60 hover:text-[#b3e8f5] transition-colors no-underline">Home</a>
       <span class="text-white/30">›</span>
       <a href="{{ url('/news') }}" class="text-white/60 hover:text-[#b3e8f5] transition-colors no-underline">News</a>
       <span class="text-white/30">›</span>
-      <span class="text-[#b3e8f5]">Article</span>
+      <span class="text-[#b3e8f5]">{{ Str::limit($article->title, 40) }}</span>
     </div>
   </div>
 </div>
