@@ -116,11 +116,11 @@
                 <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 mb-8">
                     <div class="grid md:grid-cols-2 gap-0">
                         <!-- Image Section -->
-                        <div class="relative w-full h-80 md:min-h-[22rem] overflow-hidden">
+                        <div class="relative w-full h-80 md:min-h-[22rem] overflow-hidden bg-gray-100">
                             @if($latest->main_image)
                                 <img src="{{ asset($latest->image_path) }}" 
                                      alt="{{ $latest->title }}" 
-                                     class="absolute inset-0 w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
+                                     class="absolute inset-0 w-full h-full object-contain"
                                      onerror="this.style.background='#f3f4f6'">
                             @else
                                 <div class="absolute inset-0 w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
@@ -174,9 +174,9 @@
           @endphp
           @forelse($latestThree as $news)
         <div class="md:col-span-1 bg-white rounded-2xl overflow-hidden shadow-sm card-hover border border-gray-100">
-          <div class="relative w-full aspect-[3/4] overflow-hidden">
+          <div class="relative w-full aspect-[3/4] overflow-hidden bg-gray-100">
             @if($news->main_image)
-                <img src="{{ asset($news->image_path) }}" alt="{{ $news->title }}" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.background='#f3e8ff'" />
+                <img src="{{ asset($news->image_path) }}" alt="{{ $news->title }}" class="absolute inset-0 w-full h-full object-contain" onerror="this.style.background='#f3e8ff'" />
             @else
                 <div class="absolute inset-0 w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
                     <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -191,7 +191,7 @@
           <div class="p-6">
             <p class="text-xs text-gray-400 mb-2"> · <span class="text-accent font-medium">{{ $news->published_at->format('M d, Y') }}</span></p>
             <h3 class="font-bold text-lg text-gray-700 mb-3 leading-tight">{{ $news->title }}</h3>
-            <p class="text-gray-500 text-md leading-relaxed mb-4">{{ $news->excerpt }}</p>
+            <p class="text-gray-500 text-md leading-relaxed mb-4">{{ Str::limit($news->excerpt, 100) }}</p>
             <div class="flex gap-3">
               <a href="{{ route('news.newsReadMore', $news->slug) }}" class="text-primary text-md font-semibold hover:text-accent transition-colors">Read more →</a>
             </div>
@@ -270,7 +270,7 @@
                             
                             @if($activePoster)
                                 <div class="group cursor-pointer">
-                                    <div class="relative overflow-hidden md:rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                                    <div class="relative overflow-hidden md:rounded-lg shadow-md">
                                         <div class="relative w-full aspect-[3/4]">
                                             <img src="{{ asset($activePoster->image_path) }}"
                                                 alt="{{ $activePoster->title }}"
