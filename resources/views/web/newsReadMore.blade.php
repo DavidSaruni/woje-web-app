@@ -1,6 +1,6 @@
 @extends('web.app')
 
-@section('title', 'Read more')
+@section('title', '{{ $article->title }}')
 
 @section('content')
 
