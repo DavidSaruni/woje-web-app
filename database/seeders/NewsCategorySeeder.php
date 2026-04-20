@@ -51,15 +51,6 @@ class NewsCategorySeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-<<<<<<< Updated upstream
-=======
-                'name' => 'News and Updates',
-                'slug' => 'news-and-updates',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
->>>>>>> Stashed changes
                 'name' => 'Careers',
                 'slug' => 'careers',
                 'created_at' => now(),

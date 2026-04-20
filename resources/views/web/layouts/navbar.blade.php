@@ -39,7 +39,7 @@
           <a href="{{ request()->routeIs('/') ? '#team' : url('/#team') }}" class="nav-link hover:text-primary transition-colors">Our Team</a>
           <a href="{{ request()->routeIs('/') ? '#impact' : url('/#impact') }}" class="nav-link hover:text-primary transition-colors">Impact</a>
           <a href="{{ request()->routeIs('/') ? '#news-notices' : url('/#news-notices') }}" class="nav-link hover:text-primary transition-colors">Blog</a>
-          <a href="{{ request()->routeIs('/') ? '#contact' : url('/#contact') }}" class="nav-link hover:text-primary transition-colors">Careers</a>
+          <a href="{{ route('careers') }}" class="nav-link hover:text-primary transition-colors">Careers</a>
           <a href="{{ request()->routeIs('/') ? '#contact' : url('/#contact') }}" class="nav-link hover:text-primary transition-colors">Contact</a>
         </div>
 
@@ -66,7 +66,7 @@
           <a href="{{ request()->routeIs('/') ? '#team' : url('/#team') }}" class="hover:text-primary px-2">Our Team</a>
           <a href="{{ request()->routeIs('/') ? '#impact' : url('/#impact') }}" class="hover:text-primary px-2">Impact</a>
           <a href="{{ request()->routeIs('/') ? '#news-notices' : url('/#news-notices') }}" class="hover:text-primary px-2">Blogs</a>
-          <a href="{{ request()->routeIs('/') ? '#contact' : url('/#contact') }}" class="hover:text-primary px-2">Contact</a>
+          <a href="{{ route('careers') }}" class="hover:text-primary px-2">Careers</a>
           <div class="flex gap-3 px-2 pt-2">
             <a href="{{ request()->routeIs('/') ? '#contact' : url('/#contact') }}" class="border-2 border-woje-red text-woje-red px-4 py-2 rounded-full text-md font-semibold hover:bg-woje-red hover:text-white transition-all">Get Involved</a>
             <a href="{{ request()->routeIs('/') ? '#contact' : url('/#contact') }}" class="bg-gradient-to-r from-woje-red to-woje-orange text-white px-4 py-2 rounded-full text-md font-semibold">Donate</a>
