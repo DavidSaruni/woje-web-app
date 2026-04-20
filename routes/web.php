@@ -11,6 +11,7 @@ Route::get('/', [WebController::class, 'index'])->name('web.index');
 Route::get('/news', [WebController::class, 'news'])->name('news');
 // newsReadMore
 Route::get('/news/{slug}/',[WebController::class,'newsReadMore'])->name('news.newsReadMore');
+Route::get('/careers', [WebController::class, 'careers'])->name('careers');
 Route::post('/contact', [WebController::class, 'submitContact'])->name('contact.submit');
 Route::get('/board', [WebController::class, 'board'])->name('board');
 Route::get('/about', [WebController::class, 'about'])->name('about');

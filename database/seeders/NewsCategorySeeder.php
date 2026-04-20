@@ -49,6 +49,12 @@ class NewsCategorySeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'name' => 'Careers',
+                'slug' => 'careers',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ];
 
         DB::table('news_categories')->insert($categories);

@@ -52,6 +52,34 @@ class WebController extends Controller
         return view('web.news', compact('news', 'categories'));
     }
 
+    public function careers(Request $request){
+        $query = NewsArticle::with('category')
+            ->where('status', 'published')
+            ->whereNotNull('published_at')
+            ->where('published_at', '<=', now())
+            ->whereHas('category', function($q) {
+                $q->where('slug', 'careers');
+            });
+
+        // Search functionality
+        if ($request->has('search')) {
+            $searchTerm = $request->get('search');
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('title', 'like', '%' . $searchTerm . '%')
+                  ->orWhere('excerpt', 'like', '%' . $searchTerm . '%')
+                  ->orWhere('content', 'like', '%' . $searchTerm . '%');
+            });
+        }
+
+        $careers = $query->latest('published_at')->paginate(6);
+
+        $categories = NewsCategory::where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
+        return view('web.careers', compact('careers', 'categories'));
+    }
+
         public function newsReadMore($slug = null){
         if ($slug) {
             $article = NewsArticle::with('category')
