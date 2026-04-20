@@ -106,7 +106,10 @@
                 </div>
 
                  @php
-                  $latest = \App\Models\NewsArticle::latest()->first();
+                  $latest = \App\Models\NewsArticle::published()
+                    ->latest('published_at')
+                    ->with('category')
+                    ->first();
                 @endphp
                 @if($latest)
                 <!-- Single Large News Item (Full 2 columns) -->
@@ -163,7 +166,11 @@
         <!-- Card 1 - Featured -->
          <!-- last three news before the last one -->
           @php
-            $latestThree = \App\Models\NewsArticle::latest()->skip('1')->take(3)->get();
+            $latestThree = \App\Models\NewsArticle::published()
+              ->latest('published_at')
+              ->skip(1)
+              ->take(3)
+              ->get();
           @endphp
           @forelse($latestThree as $news)
         <div class="md:col-span-1 bg-white rounded-2xl overflow-hidden shadow-sm card-hover border border-gray-100">
@@ -241,7 +248,6 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                     </svg>
                 </a>
-
             </div>
         </div>
     </section>

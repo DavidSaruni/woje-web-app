@@ -349,7 +349,7 @@
                   <span class="text-[0.72rem] text-[#6b7280] font-normal">{{ $article->published_at->format('d F Y') }}</span>
                 </div>
                 <h2 class="text-xl font-semibold leading-6 text-[#28a745] mb-2 transition-colors hover:text-[#f53003]">
-                  <a href="" class="no-underline text-inherit hover:text-[#f53003] transition-colors">{{ $article->title }}</a>
+                  <a href="{{ route('news.newsReadMore', $article->slug) }}" class="no-underline text-inherit hover:text-[#f53003] transition-colors">{{ $article->title }}</a>
                 </h2>
                 <p class="text-sm text-[#6b7280] leading-relaxed font-normal line-clamp-2">
                   {{ $article->excerpt }}

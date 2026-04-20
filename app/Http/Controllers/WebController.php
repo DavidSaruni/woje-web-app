@@ -20,8 +20,7 @@ class WebController extends Controller
         $query = NewsArticle::with('category')
             ->where('status', 'published')
             ->whereNotNull('published_at')
-            ->where('published_at', '<=', now())
-            ->whereNotNull('date');
+            ->where('published_at', '<=', now());
 
         // Filter by category if provided
         if ($request->has('category')) {
@@ -59,13 +58,8 @@ class WebController extends Controller
                 ->where('slug', $slug)
                 ->where('status', 'published')
                 ->whereNotNull('published_at')
-                ->where('published_at', '<=', now())
-                ->whereNotNull('date')
                 ->firstOrFail();
-            
-            // Increment view count
-            $article->incrementViews();
-            
+
             // Get related articles
             $relatedArticles = NewsArticle::with('category')
                 ->where('id', '!=', $article->id)

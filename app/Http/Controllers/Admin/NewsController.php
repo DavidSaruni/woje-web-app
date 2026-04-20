@@ -63,13 +63,9 @@ class NewsController extends Controller
         // Generate slug
         $validated['slug'] = Str::slug($validated['title']);
         
-        // Set published_at based on date field or current time
+        // Set published_at to now for published articles (date field is metadata only)
         if ($validated['status'] === 'published') {
-            if (isset($validated['date']) && $validated['date']) {
-                // Use date field if provided
-                $validated['published_at'] = $validated['date'];
-            } elseif (!isset($validated['published_at']) || !$validated['published_at']) {
-                // Use current time if no published_at provided
+            if (!isset($validated['published_at']) || !$validated['published_at']) {
                 $validated['published_at'] = now();
             }
         }
@@ -144,13 +140,9 @@ class NewsController extends Controller
             $validated['slug'] = Str::slug($validated['title']);
         }
         
-        // Set published_at based on date field or current time
+        // Set published_at to now for published articles (date field is metadata only)
         if ($validated['status'] === 'published') {
-            if (isset($validated['date']) && $validated['date']) {
-                // Use date field if provided
-                $validated['published_at'] = $validated['date'];
-            } elseif (!isset($validated['published_at']) || !$validated['published_at']) {
-                // Use current time if no published_at provided
+            if (!isset($validated['published_at']) || !$validated['published_at']) {
                 $validated['published_at'] = now();
             }
         }
