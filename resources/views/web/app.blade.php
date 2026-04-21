@@ -9,6 +9,7 @@
   <link rel="icon" type="image/png" href="{{ asset('woje-logo.png') }}">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
@@ -26,19 +27,18 @@
             'woje-green-dark': '#059669',
           },
           fontFamily: {
-            serif: ['Georgia', 'Times New Roman', 'serif'],
-            sans: ['Arial', 'Helvetica', 'sans-serif'],
+            sans: ['Montserrat', 'sans-serif'],
           },
           fontSize: {
-            'xs': ['0.875rem', '1.25rem'],
-            'sm': ['1rem', '1.5rem'],
-            'base': ['1.125rem', '1.75rem'],
-            'lg': ['1.25rem', '2rem'],
-            'xl': ['1.375rem', '2.25rem'],
-            '2xl': ['1.75rem', '2.5rem'],
-            '3xl': ['2.25rem', '3rem'],
-            '4xl': ['2.75rem', '3.5rem'],
-            '5xl': ['3.25rem', '4rem'],
+            'xs': ['0.75rem', '1.125rem'],
+            'sm': ['0.875rem', '1.375rem'],
+            'base': ['1rem', '1.625rem'],
+            'lg': ['1.125rem', '1.875rem'],
+            'xl': ['1.25rem', '2.125rem'],
+            '2xl': ['1.625rem', '2.375rem'],
+            '3xl': ['2.125rem', '2.875rem'],
+            '4xl': ['2.625rem', '3.375rem'],
+            '5xl': ['3.125rem', '3.875rem'],
           }
         }
       }
@@ -83,6 +83,14 @@
     }
     .testimonial-dots button.active { background: #f53003; }
     img { object-fit: cover; }
+
+    p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;        /* This creates that nice breathing room between lines */
+    letter-spacing: -0.01em; /* Montserrat can sometimes look better slightly tightened */
+    color: #4a4a4a;          /* A dark charcoal rather than pure black */
+}
   </style>
   @stack('styles')
 </head>
