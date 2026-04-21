@@ -116,11 +116,11 @@
                 <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 mb-8">
                     <div class="grid md:grid-cols-2 gap-0">
                         <!-- Image Section -->
-                        <div class="relative w-full h-80 md:min-h-[22rem] overflow-hidden bg-gray-100">
+                        <div class="relative w-full h-full overflow-hidden bg-gray-100">
                             @if($latest->main_image)
                                 <img src="{{ asset($latest->image_path) }}" 
                                      alt="{{ $latest->title }}" 
-                                     class="absolute inset-0 w-full h-full object-contain"
+                                     class="absolute inset-0 w-full h-full object-cover"
                                      onerror="this.style.background='#f3f4f6'">
                             @else
                                 <div class="absolute inset-0 w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
