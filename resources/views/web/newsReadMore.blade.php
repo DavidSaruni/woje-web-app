@@ -193,19 +193,37 @@
       </div>
 
       {{-- Additional Images --}}
-      @if($article->additional_images && count($article->additional_images) > 0)
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden mt-8">
+      @if($article->additional_images && $article->additional_images->count() > 0)
+        <section class="bg-white rounded-3xl shadow-lg overflow-hidden mt-10">
           <div class="p-8 lg:p-12">
-            <h3 class="text-xl font-semibold mb-6 text-[#28a745]">Additional Images</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+              <div>
+                <h3 class="text-2xl font-semibold text-[#28a745]">Additional Images</h3>
+                <p class="text-sm text-[#51606f] mt-2">Extra visuals to support the story and enrich the article experience.</p>
+              </div>
+              <span class="inline-flex items-center rounded-full bg-[#ecfdf5] text-[#166534] text-xs font-semibold uppercase tracking-[0.08em] px-3 py-1">
+                {{ $article->additional_images->count() }} image{{ $article->additional_images->count() === 1 ? '' : 's' }}
+              </span>
+            </div>
+
+            <div class="mt-8 grid gap-4 grid-cols-1">
               @foreach($article->additional_images as $image)
-                <div class="relative w-full aspect-[4/3] overflow-hidden rounded-lg bg-[#f5f7fa] shadow-sm">
-                  <img src="{{ asset(\App\Models\NewsArticle::storedPathForAsset($image->image_path)) }}" alt="{{ $article->title }}" class="absolute inset-0 w-full h-full object-cover hover:opacity-95 transition-opacity duration-300" />
-                </div>
+                <article class="group overflow-hidden rounded-3xl border border-[#e2e8f0] bg-[#f8fafc] shadow-sm transition-transform duration-300 hover:-translate-y-1">
+                  <div class="overflow-hidden bg-[#f1f5f9]">
+                    <img src="{{ asset(\App\Models\NewsArticle::storedPathForAsset($image->image_path)) }}"
+                         alt="{{ $image->alt_text ?: $article->title }}"
+                         class="mx-auto block w-full max-h-[32rem] object-contain transition-transform duration-500 group-hover:scale-105" />
+                  </div>
+                  @if($image->caption || $image->alt_text)
+                    <div class="p-4">
+                      <p class="text-sm font-semibold text-slate-900">{{ $image->caption ?: $image->alt_text }}</p>
+                    </div>
+                  @endif
+                </article>
               @endforeach
             </div>
           </div>
-        </div>
+        </section>
       @endif
     @else
       <div class="text-center py-12">
