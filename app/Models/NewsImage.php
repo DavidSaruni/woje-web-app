@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\NewsArticle;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -37,7 +38,7 @@ class NewsImage extends Model
      */
     public function getUrlAttribute(): string
     {
-        return asset('storage/' . $this->image_path);
+        return asset(NewsArticle::storedPathForAsset($this->image_path));
     }
 
     /**

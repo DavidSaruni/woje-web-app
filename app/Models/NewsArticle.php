@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\NewsImage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Str;
 
 class NewsArticle extends Model
@@ -81,6 +81,16 @@ class NewsArticle extends Model
     public function mainImage(): HasMany
     {
         return $this->hasMany(NewsImage::class, 'news_article_id')->where('is_main', true);
+    }
+
+    /**
+     * Get the additional gallery images for the news article.
+     */
+    public function additional_images(): HasMany
+    {
+        return $this->hasMany(NewsImage::class, 'news_article_id')
+            ->where('is_main', false)
+            ->orderBy('sort_order');
     }
 
     /**

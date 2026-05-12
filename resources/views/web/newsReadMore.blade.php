@@ -200,7 +200,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               @foreach($article->additional_images as $image)
                 <div class="relative w-full aspect-[4/3] overflow-hidden rounded-lg bg-[#f5f7fa] shadow-sm">
-                  <img src="{{ asset(\App\Models\NewsArticle::storedPathForAsset($image)) }}" alt="{{ $article->title }}" class="absolute inset-0 w-full h-full object-cover hover:opacity-95 transition-opacity duration-300" />
+                  <img src="{{ asset(\App\Models\NewsArticle::storedPathForAsset($image->image_path)) }}" alt="{{ $article->title }}" class="absolute inset-0 w-full h-full object-cover hover:opacity-95 transition-opacity duration-300" />
                 </div>
               @endforeach
             </div>

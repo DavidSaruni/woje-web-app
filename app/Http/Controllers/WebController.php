@@ -82,7 +82,7 @@ class WebController extends Controller
 
         public function newsReadMore($slug = null){
         if ($slug) {
-            $article = NewsArticle::with('category')
+            $article = NewsArticle::with(['category', 'additional_images'])
                 ->where('slug', $slug)
                 ->where('status', 'published')
                 ->whereNotNull('published_at')

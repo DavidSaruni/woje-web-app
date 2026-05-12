@@ -52,7 +52,10 @@ class NewsController extends Controller
             'published_at' => 'nullable|date',
             'date' => 'nullable|date',
             'tags' => 'nullable|string',
-            'main_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'main_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_4' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         // Get category ID from slug
@@ -91,6 +94,8 @@ class NewsController extends Controller
 
         $article = \App\Models\NewsArticle::create($validated);
 
+        $this->saveAdditionalImages($request, $article);
+
         return redirect()
             ->route('admin.news.index')
             ->with('success', 'News article created successfully!');
@@ -124,7 +129,10 @@ class NewsController extends Controller
             'published_at' => 'nullable|date',
             'date' => 'nullable|date',
             'tags' => 'nullable|string',
-            'main_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'main_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_4' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         // Get the article
@@ -170,6 +178,8 @@ class NewsController extends Controller
 
         $article->update($validated);
 
+        $this->saveAdditionalImages($request, $article);
+
         return redirect()
             ->route('admin.news.index')
             ->with('success', 'News article updated successfully!');
@@ -194,6 +204,35 @@ class NewsController extends Controller
     /**
      * Remove main image file from disk (public/images/news or storage/app/public).
      */
+    private function saveAdditionalImages(Request $request, \App\Models\NewsArticle $article): void
+    {
+        for ($n = 2; $n <= 4; $n++) {
+            $field = 'image_' . $n;
+
+            if (! $request->hasFile($field)) {
+                continue;
+            }
+
+            $image = $request->file($field);
+            $dir = public_path('images/news');
+            if (! is_dir($dir)) {
+                mkdir($dir, 0755, true);
+            }
+
+            $imageName = time() . '_' . $field . '.' . $image->getClientOriginalExtension();
+            $image->move($dir, $imageName);
+
+            // Remove any existing additional image with the same sort order.
+            $article->images()->where('sort_order', $n)->where('is_main', false)->delete();
+
+            $article->images()->create([
+                'image_path' => 'images/news/' . $imageName,
+                'sort_order' => $n,
+                'is_main' => false,
+            ]);
+        }
+    }
+
     private function deleteStoredNewsImage(?string $path): void
     {
         if ($path === null || trim($path) === '') {
